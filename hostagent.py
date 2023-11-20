@@ -23,6 +23,13 @@ class MyTimedBehaviour(TimedBehaviour):
             fish.swim()
 
         gui.update()
+        
+    def on_time(self):
+        super(MyTimedBehaviour, self).on_time()
+        for fish in self.agent.fish_list:
+            fish.detect_collision(self.agent.fish_list)
+            fish.updateStatus()
+            fish.swim()
 
 class YourTimedBehaviour(TimedBehaviour):
     def __init__(self, agent, time):
@@ -33,12 +40,14 @@ class YourTimedBehaviour(TimedBehaviour):
         super(YourTimedBehaviour, self).on_time()
         Global.x_center += 3
         print(Global.x_center)
+        gui.update()
 
 class HostAgent(Agent):
     gui = None
-    num_fishes = 2
+    num_fishes = 15
     fish_list = []
     enabled = False
+    cars = []
 
     def __init__(self, aid):
         super(HostAgent, 
@@ -51,7 +60,7 @@ class HostAgent(Agent):
             # TODO name it and launch it as an agent of chaos
 
         mytimed = MyTimedBehaviour(self, .2)
-        yourtimed = YourTimedBehaviour(self, 2)
+        yourtimed = YourTimedBehaviour(self, .2)
         self.behaviours.append(mytimed)
         self.behaviours.append(yourtimed)
 
