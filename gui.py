@@ -14,12 +14,12 @@ class Gui(QFrame):
         painter = QPainter(self)
         pista = QImage("pista.png")
         painter.drawImage(0,0,pista)
-        for fish in self.agent.fish_list:
+        for car in self.agent.cars:
             # Cargar la imagen del pez
-            fish_image = QImage("carrito.png")
+            car_image = QImage("car.png")
             
             # Escalar la imagen al tamaño del pez
-            fish_image = fish_image.scaled(fish.size*2, fish.size)
+            car_image = car_image.scaled(car.size*2, car.size)
 
             # Dibujar la imagen del pez en lugar del rectángulo
-            painter.drawImage(fish.x, fish.y, fish_image)
+            painter.drawImage(car.x, car.y, car_image)
