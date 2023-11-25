@@ -1,6 +1,8 @@
 import random
 
 from globals import Global
+from pade.misc.utility import display_message, start_loop
+from pade.acl.messages import ACLMessage
 from pade.core.agent import Agent
 from PySide6.QtGui import QColor
 from pade.behaviours.protocols import TimedBehaviour
@@ -23,7 +25,7 @@ class CarAgent(Agent):
         super(CarAgent, self).__init__(aid=aid, debug=False)
         comp_temp = ComportTemporal(self, delay)
         self.behaviours.append(comp_temp)
-
+        self.status = 2
         self.size = random.randint(10, 20)
         self.x1_limit = random.randint(30, 125 - self.size * 2)
         self.x2_limit = random.randint(514, 609 - self.size * 2)
@@ -32,7 +34,7 @@ class CarAgent(Agent):
         self.x = random.randint(30, 125 - self.size * 2)
         self.y = random.randint(30, 125 - self.size * 2)
         self.speed = 10 * 15 / self.size
-        self.status = 2
+        
         self.start_colision = False
         self.vivo = True
 

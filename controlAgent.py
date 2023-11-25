@@ -34,7 +34,7 @@ class movimientoCarro(TimedBehaviour):
 
 class ControlAgent(Agent):
     gui = None
-    num_cars = 200
+    num_cars = 100
     delay = .2
     port = int(sys.argv[1])
     cars = []
@@ -53,7 +53,6 @@ def agentsexec():
     start_loop(agents)
 
 if __name__ == '__main__':
-    agents_per_process = 2
     agents = []
     port = int(sys.argv[1])
     control_agent_name = 'control_agent_{}@localhost:{}'.format(port, port)
